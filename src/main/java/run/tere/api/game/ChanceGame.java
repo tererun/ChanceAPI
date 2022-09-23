@@ -1,7 +1,8 @@
 package run.tere.api.game;
 
-import org.bukkit.entity.Player;
 import run.tere.api.ChanceAPI;
+
+import java.util.List;
 
 public abstract class ChanceGame {
 
@@ -16,12 +17,16 @@ public abstract class ChanceGame {
     public abstract void onStart();
     public abstract void onLoop();
 
-    public GameController getGameController() {
-        return chanceAPI.getGameController(this);
+    public List<ChancePlayer> getChancePlayers() {
+        return chanceAPI.getChancePlayers(this);
     }
 
-    public Player getPlayer() {
-        return chanceAPI.getPlayer(this);
+    public ChancePlayer getChancePlayer(int playerId) {
+        List<ChancePlayer> chancePlayers = getChancePlayers();
+        if (chancePlayers.size() <= playerId) {
+            throw new IllegalArgumentException("That playerId is not defined");
+        }
+        return chancePlayers.get(playerId);
     }
 
     public ChanceSprite getSprite(int spriteId) {
@@ -63,6 +68,10 @@ public abstract class ChanceGame {
 
     public void drawText(int x, int y, String text) {
         chanceAPI.drawText(this, x, y, text);
+    }
+
+    public void clearText() {
+        chanceAPI.clearText(this);
     }
 
 }

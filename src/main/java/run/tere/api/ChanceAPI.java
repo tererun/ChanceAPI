@@ -5,6 +5,8 @@ import org.bukkit.plugin.Plugin;
 import run.tere.api.game.*;
 import run.tere.api.internal.ChanceAPIProvider;
 
+import java.util.List;
+
 public interface ChanceAPI {
 
     static ChanceAPI getChanceAPI(Plugin plugin) {
@@ -13,8 +15,7 @@ public interface ChanceAPI {
 
     void registerGame(ChanceGame chanceGame);
 
-    Player getPlayer(ChanceGame chanceGame);
-    GameController getGameController(ChanceGame chanceGame);
+    List<ChancePlayer> getChancePlayers(ChanceGame chanceGame);
     ChanceSprite getSprite(ChanceGame chanceGame, int spriteId);
     ChanceSprite createSprite(ChanceGame chanceGame, int spriteId, ChanceTexture chanceTexture, ChanceCollision chanceCollision);
     boolean containsSprite(ChanceGame chanceGame, int spriteId);
@@ -25,5 +26,6 @@ public interface ChanceAPI {
     void clearTile(ChanceGame chanceGame, int layer, int x, int y);
     void clearTile(ChanceGame chanceGame, int layer, int startX, int startY, int endX, int endY);
     void drawText(ChanceGame chanceGame, int x, int y, String text);
+    void clearText(ChanceGame chanceGame);
 
 }

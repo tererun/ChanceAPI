@@ -9,5 +9,6 @@ public interface ChanceSprite {
     void setY(int y);
     ChanceTexture getChanceTexture();
     ChanceCollision getChanceCollision();
+    CollisionInfo getCollisionInfo();
 
 }

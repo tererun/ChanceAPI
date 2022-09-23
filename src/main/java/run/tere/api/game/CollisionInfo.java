@@ -1,11 +1,10 @@
 package run.tere.api.game;
 
+import java.util.List;
+
 public interface CollisionInfo {
 
-    /**
-     * get collision tile
-     * @return 0: left, 1: top, 2: right, 3: bottom
-     */
-    int[] getCollisionTileIds();
+    int getCollisionTile(int deltaX, int deltaY);
+    List<ChanceSprite> getCollisionSprite(int deltaX, int deltaY);
 
 }
